@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     // Update is called once per frame

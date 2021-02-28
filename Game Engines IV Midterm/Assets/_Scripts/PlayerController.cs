@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
         pauseCanvas.enabled = false;
         Time.timeScale = 1.0f;
         isLoading = false;
+
+        Cursor.visible = false;
     }
 
     private void Update()
@@ -52,7 +54,7 @@ public class PlayerController : MonoBehaviour
         Movement();
         Rotation();
     }
-
+    
     private void FixedUpdate()
     {
         yControl();
@@ -78,12 +80,14 @@ public class PlayerController : MonoBehaviour
     public void OnPause(InputValue _button)
     {
         Time.timeScale = 0;
+        Cursor.visible = true;
         pauseCanvas.enabled = true;
     }
 
     public void Unpause()
     {
         Time.timeScale = 1;
+        Cursor.visible = false;
         pauseCanvas.enabled = false;
     }
 
