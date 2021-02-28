@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     CharacterController characterController;
     PlayerControls controls;
 
+    public Canvas pauseCanvas;
+
     Respawn respawn;
     [SerializeField] Animator animator;
     
@@ -40,7 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         respawn = GetComponent<Respawn>();
-
+        pauseCanvas.enabled = false;
         isLoading = false;
     }
 
@@ -70,6 +72,18 @@ public class PlayerController : MonoBehaviour
         {
             Dive();
         }
+    }
+
+    public void OnPause(InputValue _button)
+    {
+        Time.timeScale = 0;
+        pauseCanvas.enabled = true;
+    }
+
+    public void Unpause()
+    {
+        Time.timeScale = 1;
+        pauseCanvas.enabled = false;
     }
 
     public void Movement()
@@ -234,6 +248,11 @@ public class PlayerController : MonoBehaviour
                 hit.gameObject.GetComponent<Portal>().isUsed = true;
                 StartCoroutine(hit.gameObject.GetComponent<Portal>().LoadScene());
             }
+        }
+
+        if (hit.gameObject.CompareTag("Win"))
+        {
+            SceneManager.LoadScene("WinScene");
         }
     }
 

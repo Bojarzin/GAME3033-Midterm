@@ -31,13 +31,16 @@ public class GreatDoorController : MonoBehaviour
     {
         redLight.enabled = GameManager.Instance.redCollected;
         orangeLight.enabled = GameManager.Instance.orangeCollected;
-        yellowLight.enabled = GameManager.Instance.yellowCollected; 
-        greenLight.enabled = GameManager.Instance.greenCollected; 
-        blueLight.enabled = GameManager.Instance.blueCollected; 
-        indigoLight.enabled = GameManager.Instance.indigoCollected; 
+        yellowLight.enabled = GameManager.Instance.yellowCollected;
+        greenLight.enabled = GameManager.Instance.greenCollected;
+        blueLight.enabled = GameManager.Instance.blueCollected;
+        indigoLight.enabled = GameManager.Instance.indigoCollected;
         violetLight.enabled = GameManager.Instance.violetCollected;
 
-        OpenDoor();
+        if (redLight.enabled && orangeLight.enabled && yellowLight.enabled && greenLight.enabled && blueLight.enabled)
+        {
+            OpenDoor();
+        }
     }
 
     void OpenDoor()
