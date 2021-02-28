@@ -14,11 +14,11 @@ public class PlayerController : MonoBehaviour
     Respawn respawn;
     [SerializeField] Animator animator;
     
-    public float moveSpeed = 5.0f;
-    public float diveSpeed = 8.0f;
-    public float rotationSpeed = 720.0f;
-    public float divingRotationSpeed = 80.0f;
-    public float jumpStrength = 3.0f;
+    public float moveSpeed;
+    public float diveSpeed;
+    public float rotationSpeed;
+    public float divingRotationSpeed;
+    public float jumpStrength;
 
     Vector2 inputDirection;
 
@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         respawn = GetComponent<Respawn>();
         pauseCanvas.enabled = false;
+        Time.timeScale = 1.0f;
         isLoading = false;
     }
 
@@ -118,7 +119,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Dive", false);
         }
 
-        characterController.Move(yDirection);
+        characterController.Move(yDirection * Time.deltaTime);
         UpdateAnimation();
     }
 
@@ -149,7 +150,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!characterController.isGrounded)
         {
-            yDirection.y -= 0.04f * Time.deltaTime;
+            yDirection.y -= 10.04f * Time.deltaTime;
         }
     }
 
